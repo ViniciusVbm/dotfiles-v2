@@ -1,0 +1,85 @@
+/* =============================================================================
+   RESET E GLOBAL
+   ========================================================================== */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Roboto Mono", monospace;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent; 
+    color: #ffffff;
+}
+
+/* =============================================================================
+   AS PÍLULAS INDIVIDUAIS
+   ========================================================================== */
+#temperature, 
+#network\.speed, 
+#cpu, 
+#memory, 
+#custom-gpu,     
+#pulseaudio, 
+#battery, 
+#clock, 
+#network, 
+#bluetooth, 
+#workspaces {
+    background-color: #000000; /* Fundo preto absoluto */
+    border: 1px solid #ffffff; /* Borda branca para destacar no wallpaper */
+    border-radius: 20px; 
+    padding: 3px 13px; /* Ajustado levemente por causa da borda de 1px */
+    margin: 6px 4px;   
+}
+
+/* =============================================================================
+   CORES DOS ÍCONES E TEXTOS
+   ========================================================================== */
+#temperature { color: #ffffff; }
+#cpu         { color: #ffffff; }
+#memory      { color: #ffffff; }
+#custom-gpu  { color: #ffffff; } 
+#pulseaudio  { color: #ffffff; }
+#battery     { color: #ffffff; }
+#clock       { color: #ffffff; }
+#bluetooth   { color: #ffffff; }
+#window      { color: #ffffff; font-weight: normal; }
+
+/* =============================================================================
+   WORKSPACES (Bolinhas)
+   ========================================================================== */
+#workspaces button {
+    color: #555555; /* Bolinhas inativas em cinza escuro */
+    padding: 0 4px;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    background: transparent;
+}
+
+#workspaces button.active {
+    color: #ffffff; /* Bolinha ativa em branco */
+}
+
+#workspaces button:hover {
+    color: #aaaaaa; /* Cor ao passar o mouse */
+    background: transparent;
+    box-shadow: none;
+}
+
+/* =============================================================================
+   TOOLTIPS (Calendário e Avisos)
+   ========================================================================== */
+tooltip {
+    background: #000000; /* Fundo preto */
+    border-radius: 12px; 
+    border: 2px solid #ffffff; /* Borda branca */
+}
+
+tooltip label {
+    color: #ffffff; /* Texto branco */
+    padding: 10px;
+}

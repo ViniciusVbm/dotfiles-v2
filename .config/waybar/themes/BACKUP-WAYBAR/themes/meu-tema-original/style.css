@@ -1,0 +1,167 @@
+/* =============================================================================
+   RESET E GLOBAL
+   ========================================================================== */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Roboto Mono", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent; 
+    color: #ffffff;
+}
+
+/* =============================================================================
+   ESTILO "ILHA" (CLEAN / FLAT)
+   Aplicado aos blocos principais
+   ========================================================================== */
+#clock,
+#network,
+#pulseaudio,
+#battery,
+/* #taskbar,  <-- REMOVI DAQUI (Esta era a causa da bola preta) */
+#window,
+#group-hardware,
+#group-launcher {
+    /* Fundo escuro levemente transparente (Estilo Moderno) */
+    background-color: rgba(24, 24, 24, 0.9); 
+    color: #ffffff;
+
+    /* Espaçamento */
+    padding: 4px 14px;
+    margin: 6px 4px; 
+
+    /* Clean: Sem borda, sem sombra dura */
+    border: none;
+    box-shadow: none;
+    border-radius: 20px;
+}
+
+/* =============================================================================
+   GRUPO ESQUERDA
+   ========================================================================== */
+#group-launcher {
+    padding-left: 10px;
+    padding-right: 15px;
+}
+
+#custom-arch {
+    color: #1793d1;
+    font-size: 18px;
+    margin-right: 10px;
+    padding: 0;
+}
+
+#workspaces {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #6e6e6e;
+    transition: all 0.3s ease;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    font-weight: 900;
+    border-bottom: 2px solid #ffffff;
+    border-radius: 0;
+}
+
+#workspaces button:hover {
+    color: #ffffff;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* =============================================================================
+   TASKBAR (CORRIGIDO)
+   Agora a cor fica no botão, não na barra vazia
+   ========================================================================== */
+#taskbar {
+    background-color: transparent; /* Garante que o fundo da barra seja invisível */
+    padding: 0;
+    margin: 0;
+}
+
+#taskbar button {
+    /* Movi a cor de fundo para CADA botão individualmente */
+    background-color: rgba(24, 24, 24, 0.9); 
+    padding: 4px 10px;
+    border-radius: 15px; 
+    margin: 6px 3px; /* Espaço entre os ícones das janelas */
+    color: #aaaaaa;
+    box-shadow: none;
+}
+
+#taskbar button.active {
+    background-color: rgba(60, 60, 60, 0.9); /* Destaque leve no ativo */
+    color: #ffffff;
+}
+
+#taskbar button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* =============================================================================
+   MÓDULOS CENTRAIS E DIREITA
+   ========================================================================== */
+#window {
+    background-color: transparent; 
+    color: #eeeeee;
+    font-weight: normal;
+}
+
+#clock {
+    font-weight: 700;
+    color: #e0e0e0;
+}
+
+/* --- HARDWARE UNIFICADO --- 
+   Aqui está a mágica para eles não parecerem soltos
+*/
+#group-hardware {
+    /* Padding do grupo inteiro */
+    padding: 4px 10px; 
+}
+
+#custom-gpu, #cpu, #memory, #temperature {
+    background-color: transparent;
+    margin: 0;
+    /* Reduzi o padding lateral dos itens para eles ficarem mais juntos */
+    padding: 0 5px; 
+    color: #a0a0a0;
+}
+
+/* Adicionei cores sutis aos ícones/valores para diferenciar dentro do bloco */
+#custom-gpu { color: #94e2d5; }
+#cpu { color: #89b4fa; }
+#memory { color: #f9e2af; }
+#temperature { color: #eba0ac; }
+
+/* =============================================================================
+   INDICADORES (Rede, Áudio, Bateria)
+   ========================================================================== */
+#network { color: #a6e3a1; }
+#network.disconnected { color: #f38ba8; }
+
+#pulseaudio { color: #fab387; }
+#pulseaudio.muted { color: #f38ba8; }
+
+/* Estilo da Bateria */
+#battery {
+    color: #a6e3a1; /* Verde quando ok */
+}
+#battery.warning { color: #f9e2af; }
+#battery.critical { color: #f38ba8; animation-name: blink; animation-duration: 0.5s; animation-timing-function: linear; animation-iteration-count: infinite; animation-direction: alternate; }
+
+@keyframes blink {
+    to { color: #ffffff; }
+}

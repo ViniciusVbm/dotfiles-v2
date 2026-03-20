@@ -1,0 +1,151 @@
+39;9u{
+    "layer": "top",
+    "position": "top",
+    "height": 36, // Reduzi levemente para ficar mais elegante
+    "spacing": 4,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+
+    // Adicionei "battery" na lista da direita
+    "modules-left": ["group/launcher", "wlr/taskbar", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["group/hardware", "network", "pulseaudio", "battery"],
+
+    // --- GRUPOS ---
+    "group/launcher": {
+        "orientation": "horizontal",
+        "modules": ["custom/arch", "hyprland/workspaces"]
+    },
+
+    // O grupo de hardware agora ficará unificado visualmente
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": ["custom/gpu", "cpu", "memory", "temperature"]
+    },
+
+    // --- MÓDULOS ---
+
+    "custom/arch": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "rofi -show drun"
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        "all-outputs": true,
+        "format": "{name}",
+        "persistent-workspaces": {
+             "*": 5
+        }
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 18,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": ["kitty", "float_cava", "float_clock"],
+        "app_ids-mapping": {
+            "firefoxdeveloperedition": "firefox-developer-edition"
+        }
+    },
+
+    "hyprland/window": {
+        "format": " {title} ",
+        "max-length": 40,
+        "separate-outputs": true
+    },
+
+    "clock": {
+        "format": " {:%H:%M   %d/%m}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-forward": "tz_up",
+                    "on-click-backward": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
+
+    // --- HARDWARE (Com ícones para ficar mais unido) ---
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": " {}%", // Ícone de chip
+        "interval": 5,
+        "tooltip": false,
+        "on-click": "kitty btop"
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": " {usage}%", // Ícone de processador
+        "tooltip": false,
+        "on-click": "kitty btop"
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": " {}%", // Ícone de lista/ram
+        "on-click": "kitty btop"
+    },
+
+     "temperature": {
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C", // Ícone de termômetro
+        "format-critical": "HOT {temperatureC}°C",
+        "on-click": "kitty btop" 
+    },
+
+    // --- NOVO: BATERIA ---
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+"network": {
+        "interval": 2, // Adicionado para atualizar a velocidade em tempo real
+        "format-wifi": " {signalStrength}%   {bandwidthDownBytes}   {bandwidthUpBytes}",
+        "format-ethernet": "󰈀   {bandwidthDownBytes}   {bandwidthUpBytes}",
+        "format-disconnected": "󰤮 OFF",
+        "tooltip-format": "Conectado a: {essid}\nIP: {ipaddr}\nDownload: {bandwidthDownBits}\nUpload: {bandwidthUpBits}",
+        "on-click": "kitty -e nmtui"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "BT {volume}%",
+        "format-muted": "MUT",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "scroll-step": 5
+    }
+}

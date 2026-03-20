@@ -1,0 +1,101 @@
+/* =============================================================================
+   RESET E GLOBAL
+   ========================================================================== */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Roboto Mono", monospace;
+    font-size: 13px;
+    font-weight: 600; /* Deixei a fonte levemente menos "pesada" */
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent; 
+    color: #d8dee9; /* Um tom de off-white/gelo, mais suave que o branco puro */
+}
+
+/* =============================================================================
+   AS PÍLULAS INDIVIDUAIS (Ajustado)
+   ========================================================================== */
+#temperature, 
+#network\.speed, 
+#cpu, 
+#memory, 
+#custom-gpu,     
+#pulseaudio, 
+#battery, 
+#clock, 
+#network, 
+#bluetooth, 
+#workspaces {
+    background-color: rgba(20, 20, 25, 0.6); 
+    border: none; 
+    border-radius: 24px; 
+    padding: 4px 16px; 
+    margin: 6px 4px;   
+    /* Remove qualquer contorno ou sombra de caixa que possa parecer uma borda */
+    outline: none;
+    box-shadow: none; 
+}
+
+/* Remove fundos de containers que podem estar causando esse "retângulo" atrás */
+.modules-left, .modules-center, .modules-right {
+    background: transparent;
+    border: none;
+}
+
+#waybar {
+    background: transparent;
+    border: none;
+}
+
+/* =============================================================================
+   CORES DOS ÍCONES E TEXTOS
+   ========================================================================== */
+/* Todos usam o off-white para manter o monocromático, mas sem agredir os olhos */
+#temperature { color: #d8dee9; }
+#cpu         { color: #d8dee9; }
+#memory      { color: #d8dee9; }
+#custom-gpu  { color: #d8dee9; } 
+#pulseaudio  { color: #d8dee9; }
+#battery     { color: #d8dee9; }
+#clock       { color: #d8dee9; }
+#bluetooth   { color: #d8dee9; }
+#window      { color: #d8dee9; font-weight: normal; }
+
+/* =============================================================================
+   WORKSPACES (Bolinhas)
+   ========================================================================== */
+#workspaces button {
+    color: rgba(255, 255, 255, 0.25); /* Bolinhas inativas translúcidas e discretas */
+    padding: 0 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+#workspaces button.active {
+    color: #ffffff; /* Bolinha ativa mais brilhante para destacar */
+}
+
+#workspaces button:hover {
+    color: #d8dee9; 
+    background: transparent;
+    box-shadow: none;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.4); /* Efeito de brilho suave ao passar o mouse */
+}
+
+/* =============================================================================
+   TOOLTIPS (Calendário e Avisos)
+   ========================================================================== */
+tooltip {
+    background: rgba(20, 20, 25, 0.85); /* Fundo translúcido */
+    border-radius: 12px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda quase invisível de vidro */
+}
+
+tooltip label {
+    color: #d8dee9; 
+    padding: 10px;
+}

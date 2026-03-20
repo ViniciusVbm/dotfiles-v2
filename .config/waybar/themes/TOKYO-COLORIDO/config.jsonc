@@ -1,0 +1,120 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "spacing": 4,
+    "margin-top": 8,
+    "margin-left": 12,
+    "margin-right": 12,
+
+    // Tirei o "disk" e coloquei o "custom/gpu"
+    "modules-left": ["temperature", "network#speed", "cpu", "memory", "custom/gpu"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["pulseaudio", "battery", "clock", "network", "bluetooth", "hyprland/workspaces"],
+
+    // --- MÓDULOS ---
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "default": ""
+        },
+        "persistent-workspaces": {
+             "*": 5
+        }
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 40,
+        "separate-outputs": true,
+        "rewrite": { "(.*)": "$1" }
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+        "on-click": "kitty btop" 
+    },
+    "cpu": {
+        "interval": 2,
+        "format": " {usage}%",
+        "on-click": "kitty btop"
+    },
+    "memory": {
+        "interval": 5,
+        "format": " {used:0.1f}G",
+        "on-click": "kitty btop"
+    },
+    
+    // --- MÓDULO DA GPU ---
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+        "format": " {}%",
+        "interval": 2, // Atualiza a cada 2 segundos
+        "on-click": "kitty btop"
+    },
+
+    // --- REDE (Download e Upload) ---
+    "network#speed": {
+        "interval": 2,
+        "format-wifi": "↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}",
+        "format-ethernet": "↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}",
+        "format-disconnected": "󰤮",
+        "on-click": "kitty -e nmtui"
+    },
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤮",
+        "tooltip-format": "Conectado a: {essid}\nIP: {ipaddr}",
+        "on-click": "kitty -e nmtui"
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱",
+        "tooltip-format": "{device_alias} conectado",
+        "on-click": "blueman-manager"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " MUT",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "clock": {
+        "format": " {:%H:%M | %a %d %b}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ff79c6'><b>{}</b></span>",
+                "days": "<span color='#f8f8f2'>{}</span>",
+                "weekdays": "<span color='#50fa7b'><b>{}</b></span>",
+                "today": "<span color='#ffb86c'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    }
+}

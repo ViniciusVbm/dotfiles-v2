@@ -1,0 +1,14 @@
+configuration {
+    modi: "run,drun,window";
+    icon-theme: "Papirus";
+    show-icons: true;
+    drun-display-format: "{name}";
+}
+
+/* 1º Passo: Carrega o seu tema favorito primeiro */
+@theme "/home/blue5050/.local/share/rofi/themes/rounded-gray-dark.rasi"
+
+/* 2º Passo: Aplica a transparência POR CIMA do tema para ativar o blur */
+window {
+    background-color: rgba(30, 30, 30, 0.1); /* Coloquei 0.4 para ficar bem visível o vidro */
+}
