@@ -6,141 +6,125 @@
     border-radius: 0;
     font-family: "JetBrainsMono Nerd Font", "Roboto Mono", monospace;
     font-size: 13px;
-    font-weight: 600; 
+    font-weight: 700;
     min-height: 0;
 }
 
 window#waybar {
-    background-color: transparent; 
-    color: #d8dee9; 
+    background-color: transparent;
+    color: #ffffff; /* Texto global em branco puro */
 }
 
 /* =============================================================================
-   AS PÍLULAS INDIVIDUAIS (Efeito Vidro Translúcido)
+   MÓDULOS AGRUPADOS (Efeito Vidro / Glassmorphism)
    ========================================================================== */
-#temperature, 
-#network\.speed, 
-#cpu, 
-#memory, 
-#custom-gpu,     
-#pulseaudio, 
-#battery, 
-#clock, 
-#network, 
-#bluetooth, 
-#workspaces,
-#taskbar,
-#custom-notification {
-    background-color: rgba(20, 20, 25, 0.9); 
-    border: none; 
-    border-radius: 24px; 
-    padding: 4px 16px; 
-    margin: 6px 4px;   
-    outline: none;
-    box-shadow: none; 
-}
-
-/* Ajuste específico para a barra de tarefas não ficar espremida */
-#taskbar button {
-    padding: 2px 8px;            
-    background: transparent;
-    border-radius: 16px;         
-    border: none;
-    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1); /* Animação bem fluida */
+.modules-left, 
+.modules-center, 
+.modules-right {
+    /* Fundo escuro com bastante transparência (0.35) para o blur aparecer */
+    background-color: rgba(15, 15, 15, 0.35); 
+    border-radius: 0px 0px 18px 18px; 
+    padding: 2px 14px;
+    margin: 0px 8px; 
     
-    /* Prepara o espaço para o botão poder subir */
-    margin-top: 2px;    
-    margin-bottom: 2px; 
-    box-shadow: 0px 0px 0px transparent;
+    /* Borda fina e semi-transparente simulando o reflexo do vidro */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none; /* Mantém o topo reto colado na tela sem borda */
 }
 
-/* Quando você passa o mouse por cima (O Pop-up) */
-#taskbar button:hover {
-    background: rgba(255, 255, 255, 0.15); 
-    border-radius: 16px;                   
-    
-    /* O truque do pulo: tira margem de cima e joga pra baixo */
-    margin-top: -1px;    
-    margin-bottom: 5px; 
-    
-    /* Sombra para dar a impressão de que ele descolou da barra */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); 
+/* Espaçamento interno dos itens individuais */
+#custom-power, #custom-updates, #cpu, #memory, #temperature, #wlr-taskbar,
+#clock, #window, #network, #bluetooth, #pulseaudio, #battery, #custom-notification {
+    padding: 2px 8px; 
+    margin: 4px 0px; 
+    color: #ffffff; /* Força branco em todos os módulos */
 }
 
-/* O aplicativo que está focado no momento */
-#taskbar button.active {
-    background: rgba(255, 255, 255, 0.25); 
-    border-radius: 16px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra mais discreta */
-}
-
-/* Remove fundos de containers que podem estar causando "retângulos" de fundo */
-.modules-left, .modules-center, .modules-right {
-    background: transparent;
-    border: none;
-}
-
-#waybar {
-    background: transparent;
-    border: none;
+/* O módulo da janela (nome do programa) ganha uma cor levemente prateada para destacar do relógio */
+#window {
+    color: #b3b3b3; 
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /* =============================================================================
-   CORES DOS ÍCONES E TEXTOS
+   WORKSPACES
    ========================================================================== */
-#temperature { color: #d8dee9; }
-#cpu         { color: #d8dee9; }
-#memory      { color: #d8dee9; }
-#custom-gpu  { color: #d8dee9; } 
-#pulseaudio  { color: #d8dee9; }
-#battery     { color: #d8dee9; }
-#clock       { color: #d8dee9; }
-#bluetooth   { color: #d8dee9; }
-#window      { color: #d8dee9; font-weight: normal; }
-#custom-notification { color: #d8dee9; }
+#workspaces {
+    padding: 2px 6px; 
+    margin: 4px 0px;
+}
 
-/* =============================================================================
-   WORKSPACES (Bolinhas)
-   ========================================================================== */
 #workspaces button {
-    color: rgba(255, 255, 255, 0.25); 
-    padding: 0 4px;
-    font-size: 14px;
-    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.5); /* Branco com 50% de transparência para inativos */
+    padding: 0px 6px;
+    margin: 2px 2px;
+    border-radius: 12px;
+    font-weight: 800;
+    transition: all 0.2s ease;
     background: transparent;
 }
 
-#workspaces button.active {
-    color: #ffffff; 
+#workspaces button.empty {
+    color: rgba(255, 255, 255, 0.15); /* Quase invisível se estiver vazio */
 }
 
 #workspaces button:hover {
-    color: #d8dee9; 
-    background: transparent;
-    box-shadow: none;
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.4); 
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Workspace ativo: Fundo branco puro e texto preto */
+#workspaces button.active {
+    background: #ffffff; 
+    color: #000000; 
 }
 
 /* =============================================================================
-   TOOLTIPS (Calendário e Avisos)
+   BARRA DE TAREFAS (Taskbar)
    ========================================================================== */
-tooltip {
-    background: rgba(20, 20, 25, 0.85); 
-    border-radius: 12px; 
-    border: 1px solid rgba(255, 255, 255, 0.1); 
+#taskbar button {
+    padding: 0px 6px;
+    background: transparent;
+    border-radius: 12px;
+    margin: 2px 1px;
+    transition: all 0.2s ease;
 }
 
-tooltip label {
-    color: #d8dee9; 
-    padding: 10px;
+#taskbar button:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
-/* Oculta completamente as pílulas quando não há janelas/ícones para mostrar */
+#taskbar button.active {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* =============================================================================
+   EXCEÇÕES DE ESTADO (Alertas)
+   ========================================================================== */
+/* Mantive o vermelho apenas para alerta crítico de bateria, por ser funcional */
+#battery.warning     { color: #cccccc; } 
+#battery.critical    { background-color: #ff3333; color: #ffffff; border-radius: 12px;} 
+
+/* =============================================================================
+   OCULTAR MÓDULOS VAZIOS
+   ========================================================================== */
 #taskbar.empty,
-#window.empty {
+#window.empty,
+#bluetooth.empty {
     background-color: transparent;
     padding: 0;
     margin: 0;
+}
+
+/* Tooltips */
+tooltip {
+    background: rgba(15, 15, 15, 0.35); /* Transparente igual à barra */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Bordinha de vidro */
+}
+
+tooltip label {
+    color: #ffffff;
+    padding: 8px;
 }

@@ -1,0 +1,35 @@
+/* ==============================
+   DOCK BASE (igual suas pílulas)
+   ============================== */
+window {
+  background-color: rgba(20, 20, 25, 0.9);
+  border-radius: 24px;
+  padding: 6px 10px;
+}
+
+/* ==============================
+   BOTÕES (ícones)
+   ============================== */
+button {
+  border-radius: 16px;
+  margin: 4px;
+  padding: 6px;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ==============================
+   HOVER (efeito que você já usa)
+   ============================== */
+button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ==============================
+   APP ATIVO
+   ============================== */
+button:checked {
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}

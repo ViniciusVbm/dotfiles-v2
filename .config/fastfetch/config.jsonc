@@ -53,7 +53,6 @@
       "type": "custom",
       "format": "├─────────────── \u001b[1mStatus\u001b[0m ───────────────┤"
     },
-    { "type": "localip", "key": " 󰩟 Local IP" },
     { "type": "uptime", "key": " 󰅐 Uptime" },
     { "type": "locale", "key": " 󰗊 Locale" },
     {

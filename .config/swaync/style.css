@@ -344,3 +344,32 @@ scale slider {
 .blank-window {
   background-color: transparent;
 }
+/* ── 9. Animações Customizadas (SwayNC) ─────────────────────────── */
+
+/* Define como a notificação flutuante entra na tela */
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    margin-left: 50px; /* Faz a notificação vir da direita para a esquerda */
+  }
+  100% {
+    opacity: 1;
+    margin-left: 0;
+  }
+}
+
+/* Define um surgimento suave para os itens dentro do painel */
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Aplica o "slide" nas notificações pop-up do desktop */
+.floating-notifications .notification-row {
+  animation: slide-in 0.4s cubic-bezier(0.1, 1, 0.2, 1);
+}
+
+/* Aplica o "fade" nas notificações quando você abre o Control Center */
+.control-center .notification-row {
+  animation: fade-in 0.3s ease-out;
+}
